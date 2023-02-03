@@ -8,5 +8,7 @@
   },
   "author": "Sarthak Krishna",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }
