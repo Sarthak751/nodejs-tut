@@ -1,15 +1,17 @@
-const http = require('http');
+const express = require('express');
+const app =  express();
+const login = require('./routes/auth');
+const people = require('./routes/people');
 
-const server = http.createServer((req, res) => {
-    if (req.url === '/') {
-        res.end("Welcome to our home page")
-    }
-    else if (req.url === '/about') {
-        res.end("Here is the about page")
-    }
-    else res.end(`
-    <h1>Oops! Page Not Found</h1>`
-    )
-})
+app.use(express.static('./methods-public'))
 
-server.listen(5000)
+app.use(express.urlencoded({extended: false}))
+
+app.use(express.json())
+
+app.use('/login', login);
+app.use('/api/people', people)
+
+app.listen(3000, () => {
+    console.log("Server is listeining on port 3000...")
+}) 
